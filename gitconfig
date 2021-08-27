@@ -1,0 +1,15 @@
+[user]
+	email = git@dlun.ch
+	name = Inseok Lee
+	signkey = 084B1BE9C50DAC7E2B9E41B4BAC10BC27288E7BD
+[pull]
+	rebase = true
+	ff = only
+[submodule]
+	recurse = true
+[init]
+	defaultBranch = main
+[commit]
+	gpgsign = true
+[fetch]
+	prune = true
