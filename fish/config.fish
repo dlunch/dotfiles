@@ -1,4 +1,4 @@
-if test ! -d "/run/openrc"; and test -e "/etc/wsl.conf"; sudo /sbin/run_openrc.sh; end
+if test -e "/etc/wsl.conf"; genie -i; end
 
 fish_ssh_agent
 
