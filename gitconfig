@@ -6,7 +6,7 @@
 	format = ssh
 [gpg "ssh"]
 	allowedSignersFile = ~/.ssh/allowed_signers
-	program = "/mnt/c/Users/dlunch/AppData/Local/1Password/app/8/op-ssh-sign-wsl"
+	program = "/opt/1Password/op-ssh-sign"
 [pull]
 	rebase = true
 	ff = only
@@ -19,5 +19,4 @@
 [fetch]
 	prune = true
 [core]
-	sshCommand = ssh.exe
 	editor = vim
