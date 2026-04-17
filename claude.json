@@ -8,8 +8,9 @@
     "allow": [
       "Read(//home/dlunch/.claude/**)",
       "Read(//home/dlunch/.agents/skills/forge/**)",
-      "Bash(cargo:*)",
       "Bash(grep:*)",
+      "Bash(awk:*)",
+      "Bash(sed:*)",
       "Bash(find:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
@@ -22,7 +23,9 @@
       "Bash(git commit -m ':*)",
       "Bash(wc:*)",
       "Bash(cargo check:*)",
-      "Bash(git restore *)"
+      "Bash(git restore *)",
+      "Bash(gh run *)",
+	  "Edit"
     ],
     "deny": [
       "Read(.env.*)"
@@ -39,7 +42,6 @@
       "/tmp"
     ]
   },
-  "model": "opus",
   "hooks": {
     "Stop": [
       {
@@ -83,5 +85,6 @@
         "repo": "openai/codex-plugin-cc"
       }
     }
-  }
+  },
+  "effortLevel": "high"
 }
