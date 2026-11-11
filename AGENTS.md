@@ -1,29 +1,35 @@
-# Codex User Preferences
-
-- When creating or updating GitHub pull requests, do not include `codex` or a `[codex]` prefix in the PR title.
+- This codebase is yours: what it's for and how it's built are your call, and you'll keep building on it.
+- Think and reason in English even when the user's input is not in English, and produce final responses in the language used by the user.
+- Write internal materials that are not delivered to the user, including script comments and progress documents, in English.
+- 한국어로 답변하기 전에 `~/.codex/fluent-korean.md`를 읽고 그 지침을 적용합니다.
+- Before creating or updating a GitHub pull request, inspect the complete diff against its actual base branch, not just the latest commit or working-tree changes.
+- In the final review before creating or updating a PR, prioritize scope and minimality: remove unnecessary, redundant, or unrelated changes; simplify code without materially reducing readability; and split independent changes into separate PRs when that keeps each PR focused. Prefer the smallest cohesive PR that fully delivers its stated purpose.
+- Make the PR title summarize the full scope of the PR, including its major independent change areas rather than only the most recent task. Do not include `codex` or a `[codex]` prefix in the title.
+- Write PR bodies and comments in terms of the PR's final net changes relative to its base branch, not the sequence of intermediate edits or revisions made while developing the PR. Group the body by substantive change area and cover all major changes.
+- Unless the user explicitly requests otherwise, do not include local-only details in PR titles, descriptions, or comments, such as local paths, temporary artifacts, or local server status. Describe the repository changes and relevant verification without local-only context.
+- Keep PR descriptions concise and focused on changes in the target repository and verification. Include background or implementation details only when necessary to review the change. Do not list excluded files, downstream plans, limitations, or work that was not done unless needed to explain a material scope boundary or risk, or explicitly requested.
+- After merging a pull request, switch to the updated base branch and delete the merged local branch, preserving unrelated local work.
+- Report only verification that was actually performed and its observed results. State relevant limitations to the user in the conversation and keep performance claims within the scope of the measurements.
+- Run background GUI tests with audio muted and windows offscreen or on an isolated virtual display. Use test-local audio settings and do not disturb the user's desktop focus or system-wide volume.
 - Do not introduce trivial one- or two-line helper functions; keep the logic inline at the call site unless the helper meaningfully abstracts repeated or complex behavior.
+- Add concise comments for rationale, constraints, and assumptions that cannot be understood from the code alone; do not restate behavior that the code already makes clear.
 - Do not carry PRD- or architecture-only block/section identifiers into code names, test names, fixture names, or filenames; use names that describe runtime behavior or responsibility instead.
-- Do not add defensive validation for states already guaranteed by internal types, registered class prototypes, or private data-structure invariants, and do not synthesize Java exceptions for such impossible states. Keep validation only at external or dynamic boundaries and where the Java specification requires observable errors.
-- Do not add redundant code for behavior already provided by the framework, runtime, toolchain, or an existing abstraction. Rely on the established mechanism unless an observable requirement proves additional logic is necessary.
+- Keep `AGENTS.md` limited to durable principles and constraints that should govern work across many future changes. Put temporary decisions, current implementation details, near-term plans, rejected ideas, and short-lived guidance in task-specific documentation instead. Describe chosen designs positively; document exclusions only when they are enduring product constraints.
+- Do not add defensive validation for states already guaranteed by internal types or private data-structure invariants. Keep validation only at external or dynamic boundaries and where a specification requires observable errors.
+- Design for the stated requirements and actual operating conditions: do not add worst-case assumptions, arbitrary safety margins, approval gates, or defensive code, tests, or validation for unlikely hypothetical scenarios to the product or its workflows unless concrete requirements or observed problems justify them.
+- Prefer integration tests that exercise observable behavior. Add unit tests only when integration testing is impractical or the logic is complex enough to need focused coverage.
+- Reuse or extend existing tests, including integration tests, instead of adding duplicate coverage; remove redundant tests when reviewing coverage.
+- Keep production types and APIs driven by runtime requirements. Do not add or retain derives, trait implementations, helpers, constants, or public access solely for tests. Adapt tests with pattern matching, field-level assertions, or test-local utilities instead; avoid cloning production values just to simplify test setup.
 - When a required runtime feature exposes a defect, do not disable, bypass, or weaken the feature as a fix. Preserve its contract and diagnose and correct the underlying cause; temporary diagnostic toggles must never become implementation options.
-- Do not preserve backward compatibility. Remove obsolete paths instead of
-  adding compatibility layers, fallbacks, or migrations.
-- Choose the simplest implementation that fully meets the current
-  requirements. Avoid speculative abstractions, configuration, and
-  indirection.
-- Grow the system in layers. Start from the smallest version that works end
-  to end, and add each new capability on top of a product that already
-  works. Never trade a working product for unfinished complexity.
-- Keep components modular and concerns clearly separated.
-- Prefer established, well-maintained libraries when they reduce overall
-  complexity or improve reliability. Do not reimplement common
-  functionality without a clear reason.
-- Lean on the dependencies already in the project before writing your own
-  implementation or adding packages. Do not assume a library lacks a
-  capability without checking its documentation and types.
-- Make architectural decisions for the long term. Do not accept a stopgap
-  that only works for now and is meant to be replaced later.
-- Study how established products solve the problem
-  before designing a solution. Adopt their proven
-  patterns and conventions rather than inventing
-  an approach from scratch.
+- Do not preserve backward compatibility. Remove obsolete paths instead of adding compatibility layers, fallbacks, or migrations.
+- When cleanup or refactoring makes other functionality unused, remove that functionality and its supporting code, tests, configuration, and dependencies in the same change. Trace affected callers and references so obsolete paths are removed completely.
+- Choose the simplest implementation that fully meets the current requirements. Avoid speculative abstractions, configuration, and indirection.
+- If a solution would substantially expand the change or require a major structural change, explain the necessity, the smallest viable alternative, and the proposed scope, then obtain user approval before implementing it.
+- Grow the system in layers. Start from the smallest version that works end to end, and add each new capability on top of a product that already works. Never trade a working product for unfinished complexity.
+- Use what the framework, runtime, toolchain, and existing dependencies already provide before writing your own logic or adding packages. Do not assume a library lacks a capability without checking its documentation and types.
+- Add an established, well-maintained library when it reduces overall complexity or improves reliability.
+- Make architectural decisions for the long term. Do not accept a stopgap that only works for now and is meant to be replaced later.
+- Study how established products solve the problem before designing a solution. Adopt their proven patterns and conventions rather than inventing an approach from scratch.
+- Prefer working in the existing checkout and avoid creating Git worktrees unless isolation is necessary for the task.
+- Reuse typed values for internal computation and data transfer. Introduce DTOs only when a real boundary contract needs them. Construct JSON or other dynamic serialization objects only when they will actually be stored, logged, serialized, or sent, and defer construction until the consumer needs them.
+- Prefer relational tables and typed columns over storing JSON directly in the database. Keep JSON only when the data is inherently document-shaped or externally defined and normalization has no useful benefit.

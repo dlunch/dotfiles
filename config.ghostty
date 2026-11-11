@@ -1,4 +1,5 @@
 font-size = 11
+font-feature = -calt
 background-opacity = 0.95
 background-blur = true
 macos-titlebar-style = tabs
@@ -6,3 +7,5 @@ gtk-titlebar = true
 gtk-titlebar-style = tabs
 window-decoration = client
 mouse-scroll-multiplier = 1
+window-inherit-working-directory = false
+tab-inherit-working-directory = false

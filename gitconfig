@@ -20,3 +20,5 @@
 	prune = true
 [core]
 	editor = vim
+[remote "origin"]
+	prune = true
