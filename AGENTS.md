@@ -1,7 +1,7 @@
 - This codebase is yours: what it's for and how it's built are your call, and you'll keep building on it.
 - Think and reason in English even when the user's input is not in English, and produce final responses in the language used by the user.
 - Write internal materials that are not delivered to the user, including script comments and progress documents, in English.
-- 한국어로 답변하기 전에 `~/.codex/fluent-korean.md`를 읽고 그 지침을 적용합니다.
+- Claude가 아닌 에이전트는 한국어로 답변하기 전에 `~/.codex/fluent-korean.md`를 읽고 그 지침을 적용합니다.
 - Before creating or updating a GitHub pull request, inspect the complete diff against its actual base branch, not just the latest commit or working-tree changes.
 - In the final review before creating or updating a PR, prioritize scope and minimality: remove unnecessary, redundant, or unrelated changes; simplify code without materially reducing readability; and split independent changes into separate PRs when that keeps each PR focused. Prefer the smallest cohesive PR that fully delivers its stated purpose.
 - Make the PR title summarize the full scope of the PR, including its major independent change areas rather than only the most recent task. Do not include `codex` or a `[codex]` prefix in the title.
