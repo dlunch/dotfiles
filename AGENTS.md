@@ -24,6 +24,7 @@
 - Do not preserve backward compatibility. Remove obsolete paths instead of adding compatibility layers, fallbacks, or migrations.
 - When cleanup or refactoring makes other functionality unused, remove that functionality and its supporting code, tests, configuration, and dependencies in the same change. Trace affected callers and references so obsolete paths are removed completely.
 - Choose the simplest implementation that fully meets the current requirements. Avoid speculative abstractions, configuration, and indirection.
+- Prefer readable code over micro-optimizations: do not add lint-suppressed layout tricks or restructuring whose saving is small relative to the readability cost.
 - If a solution would substantially expand the change or require a major structural change, explain the necessity, the smallest viable alternative, and the proposed scope, then obtain user approval before implementing it.
 - Grow the system in layers. Start from the smallest version that works end to end, and add each new capability on top of a product that already works. Never trade a working product for unfinished complexity.
 - Use what the framework, runtime, toolchain, and existing dependencies already provide before writing your own logic or adding packages. Do not assume a library lacks a capability without checking its documentation and types.
